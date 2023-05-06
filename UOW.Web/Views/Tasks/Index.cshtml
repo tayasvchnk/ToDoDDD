@@ -1,0 +1,132 @@
+﻿@using ToDoDDD.DAL.Entities;
+@model IEnumerable<Tasks>
+
+<a asp-action="Create">Создать</a>
+<h2> Задачи</h2>
+
+
+<form asp-action="Index">
+    <div class="form-group">
+        <label class="control-label">Фильтр по названию задачи</label>
+        <input name="FilterName" class="form-control" />
+        <input type="submit" value="Отфильтровать" />
+    </div>
+</form>
+
+<hr />
+
+<table>
+    <tr>
+
+        @if (ViewBag.Sorting == "NameUp")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="NameUp">Название ^ </a> </th>
+        }
+        else if (ViewBag.Sorting == "NameDown")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="NameDown">Название v</a> </th>
+        }
+        else
+        {
+            <th><a asp-action="Index" asp-route-sortBy="NameUp">Название</a> </th>
+        }
+
+
+
+        @if (ViewBag.Sorting == "DescUp")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DescUp">Описание ^</a> </th>
+        }
+        else if (ViewBag.Sorting == "DescDown")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DescDown">Описание v</a> </th>
+        }
+        else
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DescUp">Описание</a> </th>
+        }
+
+
+
+
+
+
+        @if (ViewBag.Sorting == "StatusUp")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="StatusUp">Статус ^</a></th>
+        }
+        else if (ViewBag.Sorting == "StatusDown")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="StatusDown">Статус v</a></th>
+        }
+        else
+        {
+            <th><a asp-action="Index" asp-route-sortBy="StatusUp">Статус</a></th>
+        }
+
+
+
+        @if (ViewBag.Sorting == "PriorityUp")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="PrioritetUp">Приоритет ^</a></th>
+        }
+        else if (ViewBag.Sorting == "PriorityDown")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="PrioritetDown">Приоритет v</a></th>
+        }
+        else
+        {
+            <th><a asp-action="Index" asp-route-sortBy="PrioritetUp">Приоритет</a></th>
+        }
+
+
+
+        @if (ViewBag.Sorting == "DateUp")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DateUp">Дата создания ^</a></th>
+        }
+        else if (ViewBag.Sorting == "DateDown")
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DateDown">Дата создания v</a></th>
+        }
+        else
+        {
+            <th><a asp-action="Index" asp-route-sortBy="DateUp">Дата создания</a></th>
+        }
+
+
+        <th>Действия</a></th>
+
+    </tr>
+    @foreach (Tasks task in Model)
+    {
+        <tr>
+            <td>@task.TaskName  </td>
+            <td>@task.Desc </td>
+            <td>@task.Status.StatusName </td>
+            <td>@task.Priority.PriorityName </td>
+            <td>@task.CreateDate </td>
+
+            @*Действия*@
+            <td>
+                @if (task.Status.StatusName == "Новая")
+                {
+                    <a asp-action="ChangeStatus" asp-route-id="@task.Id" class=" btn btn-info">Открыть</a>
+                    <a asp-action="Details" asp-route-id="@task.Id" class=" btn btn-primary">Детали</a>
+                    <a asp-action="Delete" asp-route-id="@task.Id" class=" btn btn-danger">Удалить</a>
+                }
+                @if (task.Status.StatusName == "Открыта")
+                {
+                    <a asp-action="ChangeStatus" asp-route-id="@task.Id" class=" btn btn-dark">Закрыть</a>
+                    <a asp-action="Details" asp-route-id="@task.Id" class=" btn btn-primary">Детали</a>
+                }
+                @if (task.Status.StatusName == "Закрыта")
+                {
+                    <a asp-action="Delete" asp-route-id="@task.Id" class=" btn btn-danger">Удалить</a>
+                    <a asp-action="Details" asp-route-id="@task.Id" class=" btn btn-primary">Детали</a>
+                }
+
+            </td>
+        </tr>
+    }
+</table>

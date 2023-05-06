@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UOW.DAL.Entities
+namespace ToDoDDD.DAL.Entities
 {
     public class Tasks : BaseEntity
     {
@@ -24,5 +24,6 @@ namespace UOW.DAL.Entities
 
         [Display(Name = "Создать")]
         public DateTime CreateDate { get; set; }
+        public Guid StatusId { get; set; }
     }
 }

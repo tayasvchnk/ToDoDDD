@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UOW.DAL.Entities
+namespace ToDoDDD.DAL.Entities
 {
     public class Priority : BaseEntity
     {

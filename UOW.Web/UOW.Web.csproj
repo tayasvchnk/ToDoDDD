@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UOW.BLL\UOW.BLL.csproj" />
+    <ProjectReference Include="..\UOW.DAL\UOW.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

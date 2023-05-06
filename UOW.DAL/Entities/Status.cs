@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UOW.DAL.Entities
+namespace ToDoDDD.DAL.Entities
 {
-    public class Status
+    public class Status : BaseEntity
     {
         public string StatusName { get; set; } = null!;
     }
